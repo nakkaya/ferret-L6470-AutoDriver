@@ -14,6 +14,11 @@ class driver_o : public object {
 
   explicit driver_o(number_t position, number_t CSPin, number_t resetPin) :
     board(position, CSPin, resetPin){
+    pinMode(resetPin, OUTPUT);
+    pinMode(CSPin, OUTPUT);
+    digitalWrite(CSPin, HIGH);
+    digitalWrite(resetPin, LOW);
+    digitalWrite(resetPin, HIGH);
     // Before doing anything else, we need to
     //  tell the objects which SPI port to use.
     //  Some devices may have more than one.
@@ -44,5 +49,20 @@ class driver_o : public object {
 
   void use_external_clock(){
     board.setOscMode(EXT_16MHZ_OSCOUT_INVERT);
+  }
+
+  void run(number_t speed){
+    if (speed >= 0)
+      board.run(FWD, speed);
+    else
+      board.run(REV, speed);
+  }
+  
+  void soft_stop(){
+    board.softStop();
+  }
+
+  var busy_check(){
+    return obj<boolean>(board.busyCheck());
   }
 };
