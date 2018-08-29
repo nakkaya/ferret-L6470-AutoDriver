@@ -17,5 +17,8 @@
 (defn soft-stop [b]
   "b.cast<driver_o>()->soft_stop();")
 
+(defn hard-stop [b]
+  "b.cast<driver_o>()->hard_stop();")
+
 (defn busy? [b]
   "__result = b.cast<driver_o>()->busy_check();")

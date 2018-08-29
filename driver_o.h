@@ -62,6 +62,10 @@ class driver_o : public object {
     board.softStop();
   }
 
+  void hard_stop(){
+    board.hardStop();
+  }
+  
   var busy_check(){
     return obj<boolean>(board.busyCheck());
   }
