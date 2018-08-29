@@ -57,6 +57,13 @@ class driver_o : public object {
     else
       board.run(REV, speed);
   }
+
+  void move(number_t steps){
+    if (steps >= 0)
+      board.move(FWD, steps);
+    else
+      board.move(REV, steps);
+  }
   
   void soft_stop(){
     board.softStop();
@@ -68,5 +75,9 @@ class driver_o : public object {
   
   var busy_check(){
     return obj<boolean>(board.busyCheck());
+  }
+
+  void reset_pos(){
+    board.resetPos();
   }
 };
