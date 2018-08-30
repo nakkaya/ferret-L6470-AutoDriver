@@ -55,14 +55,14 @@ class driver_o : public object {
     if (speed >= 0)
       board.run(FWD, speed);
     else
-      board.run(REV, speed);
+      board.run(REV, runtime::abs(speed));
   }
 
   void move(number_t steps){
     if (steps >= 0)
       board.move(FWD, steps);
     else
-      board.move(REV, steps);
+      board.move(REV, runtime::abs(steps));
   }
   
   void soft_stop(){
