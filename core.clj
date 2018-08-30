@@ -28,3 +28,6 @@
 
 (defn reset-pos [b]
   "b.cast<driver_o>()->reset_pos();")
+
+(defn get-pos [b]
+  "__result = b.cast<driver_o>()->get_pos();")

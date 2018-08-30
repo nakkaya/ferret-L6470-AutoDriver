@@ -80,4 +80,8 @@ class driver_o : public object {
   void reset_pos(){
     board.resetPos();
   }
+
+  var get_pos(){
+    return obj<number>(board.getPos());
+  }
 };
