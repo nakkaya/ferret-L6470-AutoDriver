@@ -47,6 +47,10 @@ class driver_o : public object {
     board.setHoldKVAL(32); 
   }
 
+  void reset_dev(){
+    board.resetDev();
+  }
+  
   void use_external_clock(){
     board.setOscMode(EXT_16MHZ_OSCOUT_INVERT);
   }

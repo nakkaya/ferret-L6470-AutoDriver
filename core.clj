@@ -8,6 +8,9 @@
                             number::to<number_t>(cs),
                             number::to<number_t>(reset));")
 
+(defn reset-dev [b]
+  "b.cast<driver_o>()->reset_dev();")
+
 (defn use-external-clock [b]
   "b.cast<driver_o>()->use_external_clock();")
 
