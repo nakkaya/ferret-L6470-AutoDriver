@@ -88,4 +88,15 @@ class driver_o : public object {
   var get_pos(){
     return obj<number>(board.getPos());
   }
+
+  void set_min_speed(real_t steps_per_sec){
+    board.setMinSpeed(steps_per_sec);
+  }
+
+  void set_speed(real_t steps_per_sec){
+    board.setMaxSpeed(steps_per_sec);
+    board.setFullSpeed(steps_per_sec);
+    board.setAcc(steps_per_sec);
+    board.setDec(steps_per_sec);
+  }
 };
