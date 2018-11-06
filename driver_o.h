@@ -30,8 +30,8 @@ class driver_o : public object {
     board.configStepMode(STEP_FS);             // 0 microsteps per step
     board.setMaxSpeed(1000);                   // 10000 steps/s max
     board.setFullSpeed(1000);                  // microstep below 10000 steps/s
-    board.setAcc(100);                         // accelerate at 10000 steps/s/s
-    board.setDec(100);
+    board.setAcc(1000);                         // accelerate at 10000 steps/s/s
+    board.setDec(1000);
     board.setSlewRate(SR_530V_us);             // Upping the edge speed increases torque.
     board.setOCThreshold(OC_750mA);            // OC threshold 750mA
     board.setPWMFreq(PWM_DIV_2, PWM_MUL_2);    // 31.25kHz PWM freq
@@ -96,7 +96,7 @@ class driver_o : public object {
   void set_speed(real_t steps_per_sec){
     board.setMaxSpeed(steps_per_sec);
     board.setFullSpeed(steps_per_sec);
-    board.setAcc(steps_per_sec / 10.0);
-    board.setDec(steps_per_sec / 10.0);
+    board.setAcc(steps_per_sec);
+    board.setDec(steps_per_sec);
   }
 };
