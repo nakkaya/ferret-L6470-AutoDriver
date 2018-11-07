@@ -33,16 +33,16 @@ class driver_o : public object {
     board.setAcc(1000);                         // accelerate at 10000 steps/s/s
     board.setDec(1000);
     board.setSlewRate(SR_530V_us);             // Upping the edge speed increases torque.
-    board.setOCThreshold(OC_750mA);            // OC threshold 750mA
+    board.setOCThreshold(OC_6000mA);            // OC threshold 750mA
     board.setPWMFreq(PWM_DIV_2, PWM_MUL_2);    // 31.25kHz PWM freq
     board.setOCShutdown(OC_SD_DISABLE);        // don't shutdown on OC
     board.setVoltageComp(VS_COMP_DISABLE);     // don't compensate for motor V
     board.setSwitchMode(SW_USER);              // Switch is not hard stop
     board.setOscMode(INT_16MHZ_OSCOUT_16MHZ);  // for board, we want 16MHz
     // We'll tinker with these later, if needed.
-    board.setAccKVAL(128);
-    board.setDecKVAL(128);
-    board.setRunKVAL(128);
+    board.setAccKVAL(255);
+    board.setDecKVAL(255);
+    board.setRunKVAL(255);
     // This controls the holding current; keep it low.
     board.setHoldKVAL(32); 
   }
@@ -89,14 +89,11 @@ class driver_o : public object {
     return obj<number>(board.getPos());
   }
 
-  void set_min_speed(real_t steps_per_sec){
-    board.setMinSpeed(steps_per_sec);
-  }
-
   void set_speed(real_t steps_per_sec){
+    board.setMinSpeed(0);
     board.setMaxSpeed(steps_per_sec);
-    board.setFullSpeed(steps_per_sec);
-    board.setAcc(steps_per_sec);
-    board.setDec(steps_per_sec);
+    board.setFullSpeed(0x027);
+    board.setAcc(0xFFF);
+    board.setDec(0xFFF);
   }
 };

@@ -35,8 +35,5 @@
 (defn get-pos [b]
   "__result = b.cast<driver_o>()->get_pos();")
 
-(defn set-min-speed [b s]
-  "b.cast<driver_o>()->set_min_speed(number::to<real_t>(s));")
-
 (defn set-speed [b s]
   "b.cast<driver_o>()->set_speed(number::to<real_t>(s));")
