@@ -46,7 +46,6 @@ class driver_o : public object {
     board.setRunKVAL(255);
     // This controls the holding current; keep it low.
     board.setHoldKVAL(32);
-    board.softStop();
   }
 
   void reset_dev(){
