@@ -28,10 +28,11 @@ class driver_o : public object {
     // second paramter ignored.
     board.configSyncPin(BUSY_PIN, 0);
     board.configStepMode(STEP_FS);             // 0 microsteps per step
-    board.setMaxSpeed(1000);                   // 10000 steps/s max
-    board.setFullSpeed(1000);                  // microstep below 10000 steps/s
-    board.setAcc(1000);                         // accelerate at 10000 steps/s/s
-    board.setDec(1000);
+    board.setMinSpeed(0);
+    board.setMaxSpeed(200);                   // 200 steps/s max
+    board.setFullSpeed(0x027);
+    board.setAcc(0xFFF);
+    board.setDec(0xFFF);
     board.setSlewRate(SR_530V_us);             // Upping the edge speed increases torque.
     board.setOCThreshold(OC_6000mA);            // OC threshold 750mA
     board.setPWMFreq(PWM_DIV_2, PWM_MUL_2);    // 31.25kHz PWM freq
@@ -44,7 +45,8 @@ class driver_o : public object {
     board.setDecKVAL(255);
     board.setRunKVAL(255);
     // This controls the holding current; keep it low.
-    board.setHoldKVAL(32); 
+    board.setHoldKVAL(32);
+    board.softStop();
   }
 
   void reset_dev(){
