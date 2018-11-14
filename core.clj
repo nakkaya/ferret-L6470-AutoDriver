@@ -26,6 +26,12 @@
 (defn move [b s]
   "b.cast<driver_o>()->move(number::to<number_t>(s));")
 
+(defn soft-hiz [b]
+  "b.cast<driver_o>()->soft_hiz();")
+
+(defn hard-hiz [b]
+  "b.cast<driver_o>()->hard_hiz();")
+
 (defn soft-stop [b]
   "b.cast<driver_o>()->soft_stop();")
 

@@ -75,6 +75,18 @@ class driver_o : public object {
     else
       board.move(REV, runtime::abs(steps));
   }
+
+  void soft_hiz(){
+    if (_disable)
+      return;
+    board.softHiZ();
+  }
+
+  void hard_hiz(){
+    if (_disable)
+      return;
+    board.hardHiZ();
+  }
   
   void soft_stop(){
     if (_disable)
