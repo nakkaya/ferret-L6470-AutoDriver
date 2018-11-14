@@ -1,6 +1,7 @@
 class driver_o : public object {
   AutoDriver board;
   bool _invert_dir = false;
+  bool _disable = false;
  public:
 
   size_t type() const { return runtime::type::driver_o; }
@@ -45,9 +46,14 @@ class driver_o : public object {
     board.setOscMode(EXT_16MHZ_OSCOUT_INVERT);
   }
 
-  void invert_dir(){ _invert_dir = true; }
+  void invert_dir(){ _invert_dir = !_invert_dir; }
+
+  void disable(){ _disable = true; }
   
   void run(number_t speed){
+    if (_disable)
+      return;
+
     if (_invert_dir)
       speed = speed * -1;
     
@@ -58,6 +64,9 @@ class driver_o : public object {
   }
 
   void move(number_t steps){
+    if (_disable)
+      return;
+
     if (_invert_dir)
       steps = steps * -1;
 
@@ -68,10 +77,14 @@ class driver_o : public object {
   }
   
   void soft_stop(){
+    if (_disable)
+      return;
     board.softStop();
   }
 
   void hard_stop(){
+    if (_disable)
+      return;
     board.hardStop();
   }
   

@@ -17,6 +17,9 @@
 (defn invert-dir [b]
   "b.cast<driver_o>()->invert_dir();")
 
+(defn disable [b]
+  "b.cast<driver_o>()->disable();")
+
 (defn run [b s]
   "b.cast<driver_o>()->run(number::to<number_t>(s));")
 
