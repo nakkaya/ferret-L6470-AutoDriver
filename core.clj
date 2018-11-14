@@ -3,16 +3,16 @@
 
 (defobject driver_o "ferret-L6470-AutoDriver/driver_o.h")
 
-(defn driver [pos cs reset]
-  "__result = obj<driver_o>(number::to<number_t>(pos),
-                            number::to<number_t>(cs),
-                            number::to<number_t>(reset));")
+(defn driver [p c r]
+  "__result = obj<driver_o>(number::to<number_t>(p),
+                            number::to<number_t>(c),
+                            number::to<number_t>(r));")
 
-(defn reset-dev [b]
-  "b.cast<driver_o>()->reset_dev();")
+(defn reset [b]
+  "b.cast<driver_o>()->reset();")
 
-(defn use-external-clock [b]
-  "b.cast<driver_o>()->use_external_clock();")
+(defn external-clock [b]
+  "b.cast<driver_o>()->external_clock();")
 
 (defn invert-dir [b]
   "b.cast<driver_o>()->invert_dir();")
@@ -35,8 +35,8 @@
 (defn reset-pos [b]
   "b.cast<driver_o>()->reset_pos();")
 
-(defn get-pos [b]
-  "__result = b.cast<driver_o>()->get_pos();")
+(defn pos [b]
+  "__result = b.cast<driver_o>()->pos();")
 
-(defn set-speed [b s]
-  "b.cast<driver_o>()->set_speed(number::to<real_t>(s));")
+(defn speed [b s]
+  "b.cast<driver_o>()->speed(number::to<real_t>(s));")

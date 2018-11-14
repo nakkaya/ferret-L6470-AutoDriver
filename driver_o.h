@@ -37,11 +37,11 @@ class driver_o : public object {
     board.setHoldKVAL(32);
   }
 
-  void reset_dev(){
+  void reset(){
     board.resetDev();
   }
   
-  void use_external_clock(){
+  void external_clock(){
     board.setOscMode(EXT_16MHZ_OSCOUT_INVERT);
   }
 
@@ -83,7 +83,7 @@ class driver_o : public object {
     board.resetPos();
   }
 
-  var get_pos(){
+  var pos(){
     auto pos = board.getPos();
     if (_invert_dir)
       pos = pos * -1;
@@ -91,7 +91,7 @@ class driver_o : public object {
     return obj<number>(pos);
   }
 
-  void set_speed(real_t steps_per_sec){
+  void speed(real_t steps_per_sec){
     board.setMinSpeed(0);
     board.setMaxSpeed(steps_per_sec);
     board.setFullSpeed(0x027);
