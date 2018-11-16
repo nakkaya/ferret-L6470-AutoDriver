@@ -20,6 +20,9 @@
 (defn disable [b]
   "b.cast<driver_o>()->disable();")
 
+(defn slave [b]
+  "b.cast<driver_o>()->slave();")
+
 (defn run [b s]
   "b.cast<driver_o>()->run(number::to<number_t>(s));")
 

@@ -2,6 +2,7 @@ class driver_o : public object {
   AutoDriver board;
   bool _invert_dir = false;
   bool _disable = false;
+  bool _slave = false;
  public:
 
   size_t type() const { return runtime::type::driver_o; }
@@ -49,6 +50,8 @@ class driver_o : public object {
   void invert_dir(){ _invert_dir = !_invert_dir; }
 
   void disable(){ _disable = true; }
+
+  void slave(){ _slave = true; }
   
   void run(number_t speed){
     if (_disable)
@@ -91,13 +94,21 @@ class driver_o : public object {
   void soft_stop(){
     if (_disable)
       return;
-    board.softStop();
+
+    if (_slave)
+      board.softHiZ();
+    else
+      board.softStop();
   }
 
   void hard_stop(){
     if (_disable)
       return;
-    board.hardStop();
+
+    if (_slave)
+      board.hardHiZ();
+    else
+      board.hardStop();
   }
   
   var busy_check(){
