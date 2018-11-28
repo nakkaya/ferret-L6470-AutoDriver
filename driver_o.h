@@ -5,7 +5,8 @@ class driver_o : public object {
   bool _slave = false;
  public:
 
-  size_t type() const { return runtime::type::driver_o; }
+  type_t type() const final { return driver_o::tag; }
+  static constexpr type_id_t tag = type_id<driver_o>;
 
   bool equals(var const & o) const { return (this == o.get()); }
 
